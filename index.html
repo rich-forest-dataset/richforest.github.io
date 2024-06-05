@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="RichForest: A High-density Point Cloud Dataset for Fine-grained Forest Learning">
+  <meta name="keywords" content="RichForest: A High-density Point Cloud Dataset for Fine-grained Forest Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RichForest: A High-density Point Cloud Dataset for Fine-grained Forest Learning</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/SpatialDistributionv.png" type="image/x-icon">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <style>
+    .custom-figcaption {
+      font-size: 1.5em; /* Adjust the size as needed */
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+ -->
+
+ 
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">🌲🌳RichForest🌳🌲</h1>
+          <!-- <h1 class="title is-3 publication-title">Learning <span style="color: rgb(38, 195, 38);">Fine-Grained</span> <span style="color: rgb(0, 140, 255);">Class-Agnostic</span> 3D Segmentation<br>without Manual Labels</h1> -->
+          <h1 class="title is-3 publication-title">A High-density Point Cloud Dataset for Fine-grained Forest Learning</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://jinyuanshao.github.io/">Jinyuan Shao</a>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=en&user=3-XbxIAAAAAJ">Bosheng Li</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://lewkesy.github.io/">Xiaochen Zhou</a>,
+            </span>
+            <span class="author-block">
+              <a href="">Chunxi Zhao</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=en&user=IjxW5isAAAAJ">Jiaxing Zhang</a>,
+            </span>
+            <br>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/xiangxitian/">Xiangxi Tian</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://raymond-yeh.com/">Raymond Yeh</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://engineering.purdue.edu/CE/People/ptProfile?resource_id=111817">Ayman Habib</a>,
+              <span class="author-block">
+                <a href="https://cs.purdue.edu/homes/bbenes/">Bedrich Benes</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://ag.purdue.edu/directory/sfei">Songlin Fei</a><sup>*</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Purdue University</span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <sup>*</sup>Corresponding author
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/pdf/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-database"></i>
+                  </span>
+                  <span>Dataset</span>
+                  </a>
+            </div>
+            <p> We currently provide sample data to preview, the full dataset will be uploaded after our interior inspection.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="container is-max-desktop">
+      <img src="./static/images/teaser.jpeg" class="teaser-fig" alt="teaser-fig." />
+      <div style="margin: -110px 230px 100px 230px">
+      <span style="border: 0px solid gray; width: 240px; display: inline-block; text-align: center">Mask3D  <br> trained on manual labels.</span> 
+      <span style="border: 0px solid gray; width: 250px; display: inline-block; text-align: center"><strong>Segment3D</strong> <br> trained on automatic labels.</span>
+      </div>
+      <h2 class="subtitle has-text-centered">
+      <strong>Segment3D</strong> (right) predicts accurate segmentation masks,
+      improves over fully-supervised 3D segmentation methods e.g., Mask3D (left), and <strong>requires no manually labeled 3D training data at all</strong>.
+      This is achieved through the automatic generation of high-quality training masks using foundation models for image segmentation.
+      </h2>
+    </div> -->
+  </div>
+</section>
+
+
+<!-- 
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- Overview -->
+<div class="columns is-centered has-text-centered">
+  <div class="column is-four-fifths">
+    <!-- <h2 class="title is-3">Overview</h2> -->
+    <br>
+    <div class="columns">
+      <div class="column">
+        <figure>
+          <img src="static/images/SpatialDistributionv.png" class="center"/>
+          <figcaption class="custom-figcaption">Real-world Forests</figcaption>
+        </figure>
+      </div>
+      <div class="column">
+        <figure>
+          <img src="static/images/Synthetic_Overview4.png" class="center"/>
+          <figcaption class="custom-figcaption">Synthetic Forests</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The acquisition of 3D tree geometry enables a comprehensive and detailed understanding of forest structure and composition.
+            A promising way for data-driven precision forest management is to use modern sensors to acquire high-density point clouds.
+            However, existing high-density datasets are limited in scale and variety due to the expensive cost of data acquisition and the difficulty in annotations.
+            We introduce RichForest, a large-scale and high-density and precision annotated point cloud dataset including 11 billion points in real-world forests with 323 trees
+            and 30 billion points in synthetic forests with X trees.
+            The real-world data were obtained from different forest ecosystems globally.
+            The synthetic data are provided by our carefully designed 3D tree models and simulated forest ecosystems.
+            We further show how the RichForest dataset can be used for two key tasks in 3D forestry research: leaf-wood separation and individual tree segmentation.
+            We extensively benchmark the performance for these two tasks on both forest-specific algorithms and point cloud deep learning algorithms using RichForest.
+            Experimental results reveal that existing algorithms face challenges in terms of generalizability and complexity.
+            Finally, we discuss the potential of RichForest to advance the fine-grained understanding of forests.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- / Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <!-- <div class="column is-8"> -->
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            It borrows the source code of <a
+              href="https://nerfies.github.io/">this website</a>,
+              We sincerely thank <a
+              href="https://keunhong.com/">Keunhong Park</a> for developing and open-sourcing this template.
+          </p>
+        </div>
+      <!-- </div> -->
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
